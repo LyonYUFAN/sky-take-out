@@ -1,0 +1,11 @@
+#这里是git忽略管理的文件
+#哪些不需要管理加入到管理列表里面来就行了
+
+**/target/
+.idea
+*.iml
+*.class
+*Test.java
+**/test/
+
+
