@@ -11,6 +11,13 @@ import java.util.List;
 public interface DishService {
 
     /**
+     * 根据分类id查询菜品
+     * @param dish
+     * @return
+     */
+    List<DishVO> listWithFlavor(Dish dish);
+
+    /**
      * 根据套餐ID查询对应菜品接口
      * @param categoryId
      * @return
@@ -49,4 +56,5 @@ public interface DishService {
      */
     void deleteBatch(List<Long> ids);
 
+    void startOrStop(Integer status, Long id);
 }

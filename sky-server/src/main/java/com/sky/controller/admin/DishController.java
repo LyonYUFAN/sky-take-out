@@ -8,6 +8,7 @@ import com.sky.result.PageResult;
 import com.sky.result.Result;
 import com.sky.service.DishService;
 import com.sky.vo.DishVO;
+import io.swagger.annotations.ApiOperation;
 import org.apache.ibatis.annotations.Delete;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -20,6 +21,13 @@ public class DishController {
 
     @Autowired
     private DishService dishService;
+
+    @PostMapping("/status/{status}")
+    @ApiOperation("菜品起售停售")
+    public Result startOrStop(@PathVariable Integer status, Long id) {
+        dishService.startOrStop(status, id);
+        return Result.success();
+    }
 
     /**
      * 根据套餐ID查询对应菜品

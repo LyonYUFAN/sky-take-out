@@ -8,7 +8,9 @@ import com.sky.dto.DishDTO;
 import com.sky.dto.DishPageQueryDTO;
 import com.sky.entity.Dish;
 import com.sky.entity.DishFlavor;
+import com.sky.entity.Setmeal;
 import com.sky.exception.DeletionNotAllowedException;
+import com.sky.exception.SetmealEnableFailedException;
 import com.sky.mapper.DishMapper;
 import com.sky.mapper.FlavorMapper;
 import com.sky.mapper.SetmealDishMapper;
@@ -20,6 +22,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -32,6 +35,31 @@ public class DishServiceImpl implements DishService {
     private FlavorMapper flavorMapper;
     @Autowired
     private SetmealDishMapper  setmealDishMapper;
+
+    /**
+     * 根据分类id查询菜品
+     * @param dish
+     * @return
+     */
+    public List<DishVO> listWithFlavor(Dish dish) {
+        List<Dish> dishList = dishMapper.list(dish);
+
+        List<DishVO> dishVOList = new ArrayList<>();
+
+        for (Dish d : dishList) {
+            DishVO dishVO = new DishVO();
+            BeanUtils.copyProperties(d,dishVO);
+
+            //根据菜品id查询对应的口味
+            List<DishFlavor> flavors = flavorMapper.getByDishId(d.getId());
+
+            dishVO.setFlavors(flavors);
+            dishVOList.add(dishVO);
+        }
+
+        return dishVOList;
+    }
+
 
     /**
      * 根据套餐ID查询对应菜品接口实现
@@ -113,6 +141,19 @@ public class DishServiceImpl implements DishService {
     }
 
     /**
+     * 套餐起售、停售
+     * @param status
+     * @param id
+     */
+    public void startOrStop(Integer status, Long id) {
+        Dish dish = Dish.builder()
+                .id(id)
+                .status(status)
+                .build();
+        dishMapper.update(dish);
+    }
+
+    /**
      * 分页查询菜品功能接口
      * @param dishPageQueryDTO
      * @return
@@ -140,8 +181,8 @@ public class DishServiceImpl implements DishService {
             for(DishFlavor flavor : flavors){
                 flavor.setDishId(dishId);
             }
-        }
         flavorMapper.insertBatch(flavors);
+        }
     }
 }
 

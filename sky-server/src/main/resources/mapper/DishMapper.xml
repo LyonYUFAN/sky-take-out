@@ -23,7 +23,7 @@
             <if test="name != null">
                 name = #{name},
             </if>
-            <if test="category_id != null">
+            <if test="categoryId != null">
                 category_id = #{categoryId},
             </if>
             <if test="price != null">
@@ -38,10 +38,10 @@
             <if test="status != null">
                 status = #{status},
             </if>
-            <if test="update_time != null">
+            <if test="updateTime != null">
                 update_time = #{updateTime},
             </if>
-            <if test="update_user != null">
+            <if test="updateUser != null">
                 update_user = #{updateUser},
             </if>
         </set>
