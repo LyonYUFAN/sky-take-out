@@ -11,6 +11,7 @@ import com.sky.vo.DishVO;
 import io.swagger.annotations.ApiOperation;
 import org.apache.ibatis.annotations.Delete;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -24,6 +25,7 @@ public class DishController {
 
     @PostMapping("/status/{status}")
     @ApiOperation("菜品起售停售")
+    @CacheEvict(cacheNames = "dishCache",allEntries = true)
     public Result startOrStop(@PathVariable Integer status, Long id) {
         dishService.startOrStop(status, id);
         return Result.success();
@@ -41,6 +43,7 @@ public class DishController {
     }
 
     @PutMapping
+    @CacheEvict(cacheNames = "dishCache",allEntries = true)
     public Result update(@RequestBody DishDTO dishDTO) {
         dishService.updateWithFlavor(dishDTO);
         return Result.success();
@@ -63,6 +66,7 @@ public class DishController {
      * @return
      */
     @DeleteMapping
+    @CacheEvict(cacheNames = "dishCache",allEntries = true)
     public Result deleteBatch(@RequestParam List<Long> ids){
         dishService.deleteBatch(ids);
         return Result.success();
