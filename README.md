@@ -8,7 +8,7 @@
 > **基于 Spring Boot + MyBatis + Redis + WebSocket 的全栈外卖订餐系统**<br/>
 > *不仅是作者的第一个练手项目，更是对高并发业务场景（如秒杀、超卖、分布式锁）的初步探索与实践。*
 
-![img.png](img.png)
+![img.png](assets/img.png)
 ---
 
 ## 项目介绍
@@ -29,14 +29,15 @@
 
 | 工作台数据看板 | 订单处理流程 | 菜品/套餐管理 |
 | :---: | :---: | :---: |
-| ![img_4.png](img_4.png) | ![img_5.png](img_5.png) | ![菜品](https://via.placeholder.com/300x200?text=Dish+Manage)![img_6.png](img_6.png) |
+| ![img_4.png](assets/img_4.png) | ![img_5.png](assets/img_5.png) | ![菜品](https://via.placeholder.com/300x200?text=Dish+Manage)![img_6.png](assets/img_6.png) |
 | *今日数据概览 & 实时语音播报* | *接单/拒单/派送/完成* | *支持图片上传与口味配置* |
 
 ### 2. 用户端 
 *C 端用户进行浏览、下单、支付的移动端界面。*
 
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;点餐首页&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;购物车 & 结算&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;历史订单 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|<br/>
-<img src="img_1.png" width="160" /><img src="img_2.png" width="160" /><img src="img_3.png" width="160" />
+| 点餐首页 | 购物车 & 结算 | 历史订单 |
+| :---: | :---: | :---: |
+| ![img_1.png](assets/img_1.png) | ![img_2.png](assets/img_2.png)| ![img_3.png](assets/img_3.png) |
 ---
 
 ## 🛠️ 技术栈 
