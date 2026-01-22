@@ -52,4 +52,25 @@ public interface OrderMapper {
      */
     @Select("select count(id) from orders where status = #{status}")
     Integer countStatus(Integer status);
+
+    @Select("select * from orders where status = #{status} and order_time < #{time}")
+    List<Orders> getByStatusandOrderTime(Integer status, LocalDateTime time);
+
+    @Select("select sum(amount) from orders where order_time >= #{beginTime} and order_time <= #{endTime} and status = #{status}")
+    Double sumByMap(Map map);
+
+    /**
+     * 根据map查询订单数量
+     * @param map
+     * @return
+     */
+    Integer countByMap(Map map);
+
+    /**
+     * 根据时间区间统计热销榜
+     * @param begin
+     * @param end
+     * @return
+     */
+    List<GoodsSalesDTO> getGoodsSalesTop(LocalDateTime begin, LocalDateTime end);
 }
